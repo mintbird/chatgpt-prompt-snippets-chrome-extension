@@ -131,7 +131,7 @@ export function App() {
     <>
       {/* Snippets Dialog */}
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput className="border-none" style={{ boxShadow: 'none' }} placeholder="Type to search prompt snippets..." />
+        <CommandInput className="cps-border-none" style={{ boxShadow: 'none' }} placeholder="Type to search prompt snippets..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           {recentSnippets.length > 0 && (
@@ -139,11 +139,11 @@ export function App() {
               {recentSnippets.map((snippet, sIndex) => {
                 return (
                   <CommandItem key={`recent-snippet-${sIndex}`} value={`Recent/${snippet.name}/${snippet.description}`} onSelect={() => handleSnippetSelect(snippet)}>
-                    <div className="flex items-center gap-x-3">
-                      <ClipboardCopy className="h-4 w-4 text-slate-500" />
-                      <div className="flex flex-col gap-y-1">
-                        <div className="text-sm text-slate-900 dark:text-slate-50">{snippet.name}</div>
-                        {snippet.description !== '' && <div className="text-xs text-slate-500 dark:text-slate-400">{snippet.description}</div>}
+                    <div className="cps-flex cps-items-center cps-gap-x-3">
+                      <ClipboardCopy className="cps-h-4 cps-w-4 cps-text-slate-500" />
+                      <div className="cps-flex cps-flex-col cps-gap-y-1">
+                        <div className="cps-text-sm cps-text-slate-900 cps-dark:text-slate-50">{snippet.name}</div>
+                        {snippet.description !== '' && <div className="cps-text-xs cps-text-slate-500 cps-dark:text-slate-400">{snippet.description}</div>}
                       </div>
                     </div>
                   </CommandItem>
@@ -157,11 +157,11 @@ export function App() {
                 {snippetGroup.snippets.map((snippet, sIndex) => {
                   return (
                     <CommandItem key={`snippet-${gIndex}-${sIndex}`} value={`${snippetGroup.name}/${snippet.name}/${snippet.description}`} onSelect={() => handleSnippetSelect(snippet)}>
-                      <div className="flex items-center gap-x-3">
-                        <ClipboardCopy className="h-4 w-4 text-slate-500" />
-                        <div className="flex flex-col gap-y-1">
-                          <div className="text-sm text-slate-900 dark:text-slate-50">{snippet.name}</div>
-                          {snippet.description !== '' && <div className="text-xs text-slate-500 dark:text-slate-400">{snippet.description}</div>}
+                      <div className="cps-flex cps-items-center cps-gap-x-3">
+                        <ClipboardCopy className="cps-h-4 cps-w-4 cps-text-slate-500" />
+                        <div className="cps-flex cps-flex-col cps-gap-y-1">
+                          <div className="cps-text-sm cps-text-slate-900 cps-dark:text-slate-50">{snippet.name}</div>
+                          {snippet.description !== '' && <div className="cps-text-xs cps-text-slate-500 cps-dark:text-slate-400">{snippet.description}</div>}
                         </div>
                       </div>
                     </CommandItem>
@@ -171,43 +171,43 @@ export function App() {
             );
           })}
         </CommandList>
-        <div className="flex justify-end items-center py-1 px-2 border-t border-gray-200 dark:border-gray-700">
-          {snippetGroups.length === 0 && <div className="flex-1 text-right text-amber-500 mr-1">There are no valid snippets. Check the configuration →</div>}
-          <Button variant="ghost" className="text-xs px-2 h-8" onClick={handleOpenSettings}>
-            <Settings className="mr-2 h-4 w-4" /> Settings
+        <div className="cps-flex cps-justify-end cps-items-center cps-py-1 cps-px-2 cps-border-t cps-border-gray-200 cps-dark:border-gray-700">
+          {snippetGroups.length === 0 && <div className="cps-flex-1 cps-text-right cps-text-amber-500 cps-mr-1">There are no valid snippets. Check the configuration →</div>}
+          <Button variant="ghost" className="cps-text-xs cps-px-2 cps-h-8" onClick={handleOpenSettings}>
+            <Settings className="cps-mr-2 cps-h-4 cps-w-4" /> Settings
           </Button>
         </div>
       </CommandDialog>
 
       {/* Settings Dialog */}
       <Dialog open={openSettings} onOpenChange={setOpenSettings}>
-        <DialogContent className={`flex flex-col justify-start ${isFullScreen ? 'h-screen w-screen max-w-full sm:rounded-none sm:border-none sm:shadow-none' : ''}`}>
+        <DialogContent className={`cps-flex cps-flex-col cps-justify-start ${isFullScreen ? 'cps-h-screen cps-w-screen cps-max-w-full cps-sm:rounded-none cps-sm:border-none cps-sm:shadow-none' : ''}`}>
           <DialogHeader>
             <DialogTitle>Settings</DialogTitle>
           </DialogHeader>
-          <div className="w-full flex-1 flex flex-col gap-y-2">
+          <div className="cps-w-full cps-flex-1 cps-flex cps-flex-col cps-gap-y-2">
             <p>
               Enter your prompt snippets in the box below. The format is Markdown. For more details, see the{' '}
-              <a href="https://github.com/kohkimakimoto/chatgpt-prompt-snippets-chrome-extension#configuration" target="_blank" className="text-blue-500">
+              <a href="https://github.com/kohkimakimoto/chatgpt-prompt-snippets-chrome-extension#configuration" target="_blank" className="cps-text-blue-500">
                 Configuration document
               </a>
               .
             </p>
-            <div className={`relative ${isFullScreen ? 'h-full' : ''}`}>
+            <div className={`cps-relative ${isFullScreen ? 'cps-h-full' : ''}`}>
               <Textarea
-                className={`min-h-[240px] ${isFullScreen ? 'h-full' : ''}`}
+                className={`cps-min-h-[240px] ${isFullScreen ? 'cps-h-full' : ''}`}
                 value={config}
                 onChange={(e) => {
                   setConfig(e.target.value);
                   setIsSaved(false);
                 }}
               />
-              <Button variant="ghost" size="icon" className="absolute top-0 right-0 hover:bg-transparent" onClick={handleFullScreenToggle}>
-                {isFullScreen ? <Shrink className="h-4 w-4" /> : <Expand className="h-4 w-4" />}
+              <Button variant="ghost" size="icon" className="cps-absolute cps-top-0 cps-right-0 cps-hover:bg-transparent" onClick={handleFullScreenToggle}>
+                {isFullScreen ? <Shrink className="cps-h-4 cps-w-4" /> : <Expand className="cps-h-4 cps-w-4" />}
               </Button>
             </div>
-            {!isSaved && <p className="text-red-500">You have unsaved changes.</p>}
-            {isSaved && message && <p className="text-green-500">{message}</p>}
+            {!isSaved && <p className="cps-text-red-500">You have unsaved changes.</p>}
+            {isSaved && message && <p className="cps-text-green-500">{message}</p>}
           </div>
           <DialogFooter>
             <Button size="sm" onClick={handleSave}>
