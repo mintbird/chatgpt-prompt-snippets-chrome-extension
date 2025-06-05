@@ -5,6 +5,8 @@ import * as React from 'react';
 
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+import { DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 const Command = React.forwardRef<React.ElementRef<typeof CommandPrimitive>, React.ComponentPropsWithoutRef<typeof CommandPrimitive>>(({ className, ...props }, ref) => <CommandPrimitive ref={ref} className={cn('cps-flex cps-h-full cps-w-full cps-flex-col cps-overflow-hidden cps-rounded-md cps-bg-white cps-text-slate-950 dark:cps-bg-slate-950 dark:cps-text-slate-50', className)} {...props} />);
 Command.displayName = CommandPrimitive.displayName;
@@ -15,6 +17,12 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
     <Dialog {...props}>
       <DialogContent className="cps-overflow-hidden cps-p-0 cps-shadow-lg md:cps-max-w-2xl cps-border-gray-200 dark:cps-border-gray-700">
+        <DialogHeader>
+          <VisuallyHidden>
+            <DialogTitle>Settings</DialogTitle>
+            <DialogDescription>Configure your snippet settings below.</DialogDescription>
+          </VisuallyHidden>
+        </DialogHeader>
         <Command className="[&_[cmdk-group-heading]]:cps-px-2 [&_[cmdk-group-heading]]:cps-font-medium [&_[cmdk-group-heading]]:cps-text-slate-500 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:cps-pt-0 [&_[cmdk-group]]:cps-px-2 [&_[cmdk-input-wrapper]_svg]:cps-h-5 [&_[cmdk-input-wrapper]_svg]:cps-w-5 [&_[cmdk-input]]:cps-h-12 [&_[cmdk-item]]:cps-px-2 [&_[cmdk-item]]:cps-py-3 [&_[cmdk-item]_svg]:cps-h-5 [&_[cmdk-item]_svg]:cps-w-5 dark:[&_[cmdk-group-heading]]:cps-text-slate-400">
           {children}
         </Command>
