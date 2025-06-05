@@ -31,6 +31,8 @@ export function App() {
       if (e.key === 'q' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((open) => !open);
+      } else if (e.key === 'Escape') {
+        setOpen(false);
       }
     };
 
